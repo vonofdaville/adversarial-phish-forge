@@ -473,3 +473,4 @@ class CampaignManager:
             # Remove from active campaigns
             self.active_campaigns.pop(campaign_id, None)
 
+

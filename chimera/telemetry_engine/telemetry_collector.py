@@ -429,3 +429,4 @@ class TelemetryCollector:
             logger.error(f"Failed to purge old data: {e}")
             return 0
 
+

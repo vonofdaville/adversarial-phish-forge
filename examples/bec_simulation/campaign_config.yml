@@ -1,0 +1,173 @@
+# CHIMERA BEC Simulation Campaign Configuration
+# Safe Mode - Business Email Compromise Training Exercise
+# Version: 1.0.0
+# Created: December 2025
+
+campaign:
+  # Basic campaign information
+  id: "bec_simulation_q4_2025"
+  name: "Q4 Financial Review - Urgent Wire Transfer"
+  description: "Simulated CFO email requesting immediate wire transfer for acquisition opportunity"
+  category: "training_simulation"
+  priority: "medium"
+
+  # Ethical and legal justification
+  ethical_justification: "Authorized training exercise to improve finance team awareness of BEC attacks"
+  legal_authorization: "Approved by CISO and Legal Department - Reference: SEC-2025-BEC-001"
+  data_protection_impact: "No real financial data used - simulation only"
+
+targeting:
+  # Recipient configuration
+  audience: "finance_team"
+  max_recipients: 10  # Safe Mode limit
+  geographic_restrictions:
+    allowed_countries: ["US", "CA", "GB"]
+    block_unknown_locations: true
+
+  # Consent requirements
+  consent_required: true
+  consent_verification: "strict"  # Check every action
+  consent_grace_period: 0  # No grace period in training
+
+content:
+  # Email template configuration
+  pretext_template: "cfo_wire_transfer_urgent"
+  subject_template: "URGENT: Q4 Financial Review - Wire Transfer Required"
+
+  # Simulation markings (required for training)
+  simulation_banner: true
+  simulation_footer: true
+  training_disclaimer: true
+
+  # Content restrictions
+  max_attachment_size: 0  # No attachments in training
+  disable_links: false    # Allow tracking links for monitoring
+  content_validation: "strict"
+
+delivery:
+  # Email delivery settings
+  sender_impersonation: "executive"  # CFO-level impersonation
+  smtp_server: "localhost"  # Use local postfix in Safe Mode
+  dkim_signing: true
+  spf_alignment: true
+
+  # Delivery controls
+  batch_size: 3
+  batch_delay_seconds: 300  # 5 minutes between batches
+  rate_limit_per_hour: 10   # Safe Mode restriction
+
+  # Tracking and monitoring
+  tracking_enabled: true
+  pixel_tracking: true
+  link_tracking: false  # No external links in training
+  open_tracking: true
+  response_monitoring: true
+
+safety:
+  # Kill switch configuration
+  kill_switch_enabled: true
+  auto_kill_triggers:
+    - "consent_revocation"
+    - "geographic_anomaly"
+    - "escalation_detection"
+  manual_kill_allowed: true
+
+  # Time restrictions
+  max_campaign_duration_hours: 8
+  auto_expire_enabled: true
+  timezone_restrictions: "business_hours_only"
+
+  # Abuse prevention
+  rate_limiting_enabled: true
+  ip_whitelist_only: false  # Allow monitored IPs
+  suspicious_activity_monitoring: true
+
+monitoring:
+  # Real-time monitoring
+  dashboard_enabled: true
+  alert_on_suspicious_activity: true
+  alert_on_consent_violation: true
+
+  # Logging configuration
+  detailed_logging: true
+  audit_trail_enabled: true
+  privacy_filtering: "maximum"
+
+  # Reporting
+  real_time_reports: true
+  post_campaign_analysis: true
+  participant_feedback_collection: true
+
+compliance:
+  # Regulatory compliance
+  gdpr_compliant: true
+  ccpa_compliant: true
+  soc2_compliant: true
+
+  # Documentation
+  incident_response_plan: true
+  consent_records_maintained: true
+  audit_logs_retained: true
+
+  # Approval requirements
+  requires_manual_approval: true
+  approval_authority: "security_team"
+  approval_deadline_hours: 24
+
+training:
+  # Educational configuration
+  learning_objectives:
+    - "Identify sophisticated email impersonation"
+    - "Recognize urgent financial request patterns"
+    - "Understand multi-factor verification importance"
+    - "Practice incident response procedures"
+
+  # Debriefing configuration
+  post_campaign_debrief: true
+  participant_feedback_required: true
+  lessons_learned_documentation: true
+
+  # Success metrics
+  detection_rate_target: 80  # Percentage who identify simulation
+  response_time_target_minutes: 30
+
+# Template variables for content generation
+template_variables:
+  executive_name: "Sarah Johnson"
+  executive_title: "Chief Financial Officer"
+  company_name: "Global Enterprises Inc."
+  financial_amount: "$2,750,000"
+  urgency_reason: "unexpected acquisition opportunity"
+  fake_bank_name: "International Commercial Bank"
+  fake_account_number: "****6789"
+  fake_routing_number: "***0021"
+  fake_swift_code: "ICBUUS33"
+
+# Simulation-specific settings
+simulation:
+  # Content difficulty level
+  difficulty: "intermediate"  # beginner, intermediate, advanced
+
+  # Spoofing settings
+  email_spoofing_level: "header_only"  # No full domain spoofing in training
+  display_name_impersonation: true
+
+  # Behavioral simulation
+  simulate_urgency: true
+  simulate_authority: true
+  simulate_confidentiality: true
+
+  # Safety overrides
+  emergency_stop_word: "CHIMERA_STOP"  # Include in replies to stop
+  monitoring_keywords: ["wire transfer", "urgent", "confidential", "acquisition"]
+
+# Metadata for tracking and analysis
+metadata:
+  created_by: "Security Training Team"
+  created_date: "2025-12-19"
+  approved_by: "Chief Information Security Officer"
+  approval_date: "2025-12-19"
+  training_session_id: "BEC_TRAIN_2025_Q4_001"
+  organizational_unit: "Corporate Security"
+  budget_code: "SEC-TRAIN-2025"
+  confidentiality_level: "INTERNAL_USE_ONLY"

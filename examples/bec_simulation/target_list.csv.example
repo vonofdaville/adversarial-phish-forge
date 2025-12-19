@@ -1,0 +1,16 @@
+# CHIMERA BEC Simulation - Target List Example
+# This is a SAMPLE file - Replace with actual consented participants
+# Format: email,name,department,consent_date,consent_signature,notes
+# All participants must provide explicit written consent before inclusion
+
+email,name,department,consent_date,consent_signature,notes
+john.doe@company.com,John Doe,Finance,2025-12-19,JD_SIGNATURE_ABC123,BEC training participant - Finance Manager
+jane.smith@company.com,Jane Smith,Accounting,2025-12-19,JS_SIGNATURE_DEF456,BEC training participant - Senior Accountant
+bob.wilson@company.com,Bob Wilson,Treasury,2025-12-19,BW_SIGNATURE_GHI789,BEC training participant - Treasury Analyst
+alice.brown@company.com,Alice Brown,Finance,2025-12-19,AB_SIGNATURE_JKL012,BEC training participant - Financial Analyst
+charlie.davis@company.com,Charlie Davis,Accounting,2025-12-19,CD_SIGNATURE_MNO345,BEC training participant - Accounts Payable
+diana.evans@company.com,Diana Evans,Finance,2025-12-19,DE_SIGNATURE_PQR678,BEC training participant - Budget Manager
+frank.garcia@company.com,Frank Garcia,Treasury,2025-12-19,FG_SIGNATURE_STU901,BEC training participant - Cash Manager
+grace.harris@company.com,Grace Harris,Accounting,2025-12-19,GH_SIGNATURE_VWX234,BEC training participant - Audit Supervisor
+henry.ivanov@company.com,Henry Ivanov,Finance,2025-12-19,HI_SIGNATURE_YZA567,BEC training participant - CFO Assistant
+isabel.johnson@company.com,Isabel Johnson,Treasury,2025-12-19,IJ_SIGNATURE_BCD890,BEC training participant - Risk Analyst

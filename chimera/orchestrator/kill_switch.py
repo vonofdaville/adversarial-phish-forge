@@ -397,3 +397,4 @@ class KillSwitch:
 
         return recommendations
 
+

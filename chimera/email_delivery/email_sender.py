@@ -382,3 +382,4 @@ class EmailSender:
             'configuration_issues': config_validation['issues']
         }
 
+

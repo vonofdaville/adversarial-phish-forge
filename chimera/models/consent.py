@@ -215,3 +215,4 @@ class EthicsReportRequest(BaseModel):
     severity_level: str = "MEDIUM"
     reporter_email: Optional[EmailStr] = None
 
+

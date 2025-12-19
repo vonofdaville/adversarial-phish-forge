@@ -256,3 +256,4 @@ def log_ethics_event(incident_type: str, severity: str = "MEDIUM", **kwargs):
     logger = get_logger()
     logger.ethics_event(incident_type, severity, **kwargs)
 
+

@@ -422,3 +422,4 @@ Format as JSON:
             "recent_generations": self.generation_history[-10:] if self.generation_history else []
         }
 
+

@@ -279,3 +279,4 @@ INSERT INTO telemetry_anomalies (
     8.5, ['rapid_events', 'short_time_window'], ['flag_for_review', 'block_ip']
 );
 
+

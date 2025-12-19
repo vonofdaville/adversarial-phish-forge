@@ -219,3 +219,4 @@ FOR ()-[r:COMMUNICATES_WITH]-() ON (r.interaction_frequency);
 CREATE INDEX person_vendor_idx IF NOT EXISTS
 FOR ()-[r:VENDOR_RELATIONSHIP]-() ON (r.created_at);
 
+

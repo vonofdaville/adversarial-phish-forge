@@ -456,3 +456,4 @@ Application Logs → Logstash → Elasticsearch → Kibana
 
 *"CHIMERA's architecture represents the most sophisticated ethical red team platform ever created, balancing cutting-edge offensive capabilities with uncompromising security and privacy protections."*
 
+
