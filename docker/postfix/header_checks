@@ -1,0 +1,24 @@
+# CHIMERA Postfix Header Checks
+# Basic header filtering for improved deliverability
+
+# Remove sensitive headers that might cause issues
+/^Received:/ IGNORE
+
+# Check for proper Message-ID format
+/^Message-ID:.*$/ OK
+
+# Basic spam checks (reject obvious spam patterns)
+/^Subject:.*\b(?:viagra|casino|lottery|winner)\b/ REJECT Spam content detected
+/^Subject:.*\b(?:urgent|emergency|crisis)\b.*\b(?:action|respond|reply)\b/ WARN Potential urgency spam
+
+# Allow legitimate headers
+/^X-.*:.*$/ OK
+/^List-.*:.*$/ OK
+
+# Reject malformed From headers
+/^From:.*<.*>.*$/ OK
+/^From:.*[^<]*$/ REJECT Malformed From header
+
+# Allow DKIM signatures
+/^DKIM-Signature:/ OK
+

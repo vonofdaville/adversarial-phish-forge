@@ -1,0 +1,93 @@
+# CHIMERA Postfix Configuration
+# SMTP server configuration for secure email delivery
+
+# Basic configuration
+myhostname = mail.chimera.local
+mydomain = chimera.local
+myorigin = $mydomain
+
+# Network settings
+inet_interfaces = all
+inet_protocols = ipv4
+
+# SMTP settings
+smtp_tls_security_level = may
+smtp_tls_loglevel = 1
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
+# SASL authentication
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+
+# TLS settings
+smtpd_tls_security_level = may
+smtpd_tls_auth_only = no
+smtpd_tls_cert_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_loglevel = 1
+
+# SMTPD settings
+smtpd_banner = $myhostname ESMTP CHIMERA
+smtpd_helo_required = yes
+smtpd_helo_restrictions = permit_mynetworks, reject_invalid_helo_hostname, reject_non_fqdn_helo_hostname
+smtpd_sender_restrictions = permit_mynetworks, reject_unknown_sender_domain, reject_non_fqdn_sender
+smtpd_recipient_restrictions = permit_mynetworks, reject_unauth_destination, reject_unknown_recipient_domain
+
+# Rate limiting
+smtpd_client_connection_rate_limit = 50
+smtpd_client_message_rate_limit = 10
+anvil_rate_time_unit = 60s
+
+# Queue settings
+maximal_queue_lifetime = 1d
+bounce_queue_lifetime = 1d
+maximal_backoff_time = 4000s
+minimal_backoff_time = 300s
+queue_run_delay = 300s
+
+# Message size limits
+message_size_limit = 10240000
+mailbox_size_limit = 51200000
+
+# Virtual mailbox settings (for local delivery if needed)
+virtual_mailbox_domains = $mydomain
+virtual_mailbox_base = /var/mail/vhosts
+virtual_mailbox_maps = hash:/etc/postfix/vmailbox
+virtual_minimum_uid = 1000
+virtual_uid_maps = static:5000
+virtual_gid_maps = static:5000
+
+# DKIM settings (opendkim integration if available)
+# milter_protocol = 6
+# milter_default_action = accept
+# smtpd_milters = inet:localhost:8891
+# non_smtpd_milters = $smtpd_milters
+
+# Logging
+maillog_file = /var/log/mail.log
+debug_peer_level = 2
+debug_peer_list = 192.168.0.0/16
+
+# Anti-spam measures (basic)
+smtpd_delay_reject = yes
+smtpd_error_sleep_time = 1s
+
+# Disable VRFY command
+disable_vrfy_command = yes
+
+# Aliases
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+
+# Relay settings (for external delivery)
+relayhost =
+mynetworks = 127.0.0.0/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16
+
+# Header checks (basic anti-spam)
+header_checks = regexp:/etc/postfix/header_checks
+
+# Content filtering (if needed)
+# content_filter = smtp-amavis:[127.0.0.1]:10024
+

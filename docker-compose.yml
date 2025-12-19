@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  # PostgreSQL for consent database and metadata
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: chimera
+      POSTGRES_USER: chimera
+      POSTGRES_PASSWORD: chimera_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chimera -d chimera"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Neo4j for identity graph
+  neo4j:
+    image: neo4j:5.18-enterprise
+    environment:
+      NEO4J_AUTH: neo4j/chimera_password
+      NEO4J_PLUGINS: '["graph-data-science"]'
+      NEO4J_dbms_security_procedures_unrestricted: 'gds.*,apoc.*'
+      NEO4J_dbms_security_allow__csv__import__from__file__urls: 'true'
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - ./docker/neo4j/plugins:/plugins
+      - ./docker/neo4j/init.cypher:/docker-entrypoint-initdb.d/init.cypher
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "chimera_password", "MATCH () RETURN count(*) limit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # ClickHouse for telemetry
+  clickhouse:
+    image: clickhouse/clickhouse-server:23.11-alpine
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+      - ./docker/clickhouse/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--query", "SELECT 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Redis for queuing and caching
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Postfix for email delivery
+  postfix:
+    image: postfixadmin/postfix:latest
+    environment:
+      POSTFIX_MYSQL_HOST: postgres
+      POSTFIX_MYSQL_USER: chimera
+      POSTFIX_MYSQL_PASSWORD: chimera_password
+      POSTFIX_MYSQL_DB: chimera
+      POSTFIX_HOSTNAME: mail.chimera.local
+      POSTFIX_DOMAIN: chimera.local
+    volumes:
+      - postfix_data:/var/spool/postfix
+      - ./docker/postfix/main.cf:/etc/postfix/main.cf
+    ports:
+      - "25:25"
+      - "587:587"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # CHIMERA Orchestrator (FastAPI)
+  orchestrator:
+    build:
+      context: .
+      dockerfile: docker/orchestrator.Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://chimera:chimera_password@postgres:5432/chimera
+      - NEO4J_URI=neo4j://neo4j:7687
+      - REDIS_URL=redis://redis:6379/0
+      - CLICKHOUSE_HOST=clickhouse
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./chimera:/app/chimera
+      - ./.env:/app/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+    command: uvicorn chimera.orchestrator.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Tracking Server (Node.js/Express)
+  tracking-server:
+    build:
+      context: .
+      dockerfile: docker/tracking.Dockerfile
+    environment:
+      - CLICKHOUSE_HOST=clickhouse
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./chimera/tracking_server:/app
+    depends_on:
+      clickhouse:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  neo4j_data:
+  neo4j_logs:
+  clickhouse_data:
+  redis_data:
+  postfix_data:
